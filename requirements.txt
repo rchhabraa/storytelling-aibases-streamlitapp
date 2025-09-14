@@ -1,4 +1,6 @@
-numpy
+streamlit
 pandas
-seaborn
 matplotlib
+seaborn
+fpdf
+google-generativeai
