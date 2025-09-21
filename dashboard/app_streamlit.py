@@ -99,7 +99,7 @@ def save_report_pdf(heuristic_text, imgs, llm_text=None):
 # Streamlit App
 # -------------------------------
 st.set_page_config("AI Data Storyteller", layout="wide")
-st.title("📊 AI Data Storyteller Dashboard")
+st.title("DataNarrator: AI Data Storyteller")
 
 # Sidebar Input: only file upload (no API key needed now)
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
@@ -114,7 +114,7 @@ if uploaded_file:
     # -------------------------------
     # Dataset Preview + Validation
     # -------------------------------
-    st.subheader("🔍 Dataset Preview")
+    st.subheader("Dataset Preview")
     st.dataframe(df.head())
 
     st.write("**Shape:**", df.shape)
@@ -136,7 +136,7 @@ if uploaded_file:
     # -------------------------------
     # Data Preprocessing Section
     # -------------------------------
-    st.subheader("🧹 Data Preprocessing")
+    st.subheader("Data Preprocessing")
 
     # Missing values table
     missing_table = pd.DataFrame({
@@ -159,7 +159,7 @@ if uploaded_file:
     # -------------------------------
     # Automated EDA (Summary + Heuristics)
     # -------------------------------
-    st.subheader("📈 Automated EDA (Heuristic Insights)")
+    st.subheader("Automated EDA")
     num_cols = df.select_dtypes(include="number").columns.tolist()
     cat_cols = df.select_dtypes(include=["object", "category", "bool"]).columns.tolist()
 
@@ -188,7 +188,7 @@ if uploaded_file:
     # -------------------------------
     # AI Insights via Gemini
     # -------------------------------
-    st.subheader("🤖 Gemini LLM Insights")
+    st.subheader("Gemini LLM Insights")
     try:
         model = load_gemini()
         with st.spinner("Calling Gemini LLM for insights..."):
@@ -201,7 +201,7 @@ if uploaded_file:
     # -------------------------------
     # Visualizations (3+ meaningful plots)
     # -------------------------------
-    st.subheader("📊 Auto Visualizations")
+    st.subheader("Auto Visualizations")
     cols = st.columns(3)
     img_files = []
 
@@ -246,7 +246,7 @@ if uploaded_file:
 
     # Line chart (extra plot)
     if num_cols:
-        fig4, ax4 = plt.subplots(figsize=(6,4))
+        fig4, ax4 = plt.subplots(figsize=(5,4))
         df[num_cols].head(50).plot(ax=ax4)
         ax4.set_title("Line Chart (first 50 rows)")
         st.pyplot(fig4)
